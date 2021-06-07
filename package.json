@@ -1,0 +1,41 @@
+{
+  "name": "docker-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "docker:up": "docker run -p 3000:3000 -d -v $(pwd):/app:ro -v /app/node_modules --name sample-node-app sample-node-image",
+    "docker:down": "docker rm -fv sample-node-app",
+    "docker:inspect": "docker exec -it sample-node-app bash",
+    "docker:build": "docker build -t sample-node-image .",
+    "docker:peek": "docker ps -a",
+    "docker:log": "docker logs sample-node-app",
+    "docker-com:dev:up": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build",
+    "docker-com:prod:up": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
+    "docker-com:down": "docker-compose down",
+    "mongo:inspect": "docker exec -it docker-node_mongo_1 mongo -u nickgdev -p arapahoe22"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-redis": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.12.12",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.3",
+    "jest": "^27.0.1",
+    "nodemon": "^2.0.7"
+  }
+}
